@@ -22,7 +22,7 @@ Run the following commands for each module (`server`, `client`, `frontend`):
 
 ```bash
 cd project-name
-mvn clean install
+mvn clean install -DskipTests
 mvn spring-boot:run
 ```
 
