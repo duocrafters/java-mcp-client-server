@@ -7,16 +7,12 @@ It demonstrates how to integrate an MCP **server** exposing tools over SSE/WebMV
 
 **Goal:** Quickly understand, configure, test, and deploy a simple yet complete MCP setup using Spring Boot and Mistral.
 
----
-
 ## ⚙️ Prerequisites
 
 Before running the project, make sure you have:
 
 - **Java 25**
 - **Maven 3.8+**
-
----
 
 ## 🚀 Build & Run
 
@@ -38,8 +34,6 @@ mvn spring-boot:run
 | **MCP Client** | `8080` | Orchestrates the LLM and exposes an HTTP endpoint for user queries |
 | **Frontend** | `8081` | Provides a simple web UI to interact with the MCP setup |
 
----
-
 ## 🧩 Architecture Overview
 
 ```
@@ -56,14 +50,8 @@ MCP Server (8082)
 - **MCP Client**: Connects to the server, processes user input, and delegates reasoning and tool usage to Mistral.
 - **Frontend**: Offers a basic interface to send queries and visualize responses.
 
----
-
 ## 🧰 Useful Links
 
 - [Spring AI Documentation](https://docs.spring.io/spring-ai/reference/)
 - [Mistral AI](https://docs.mistral.ai/)
 - [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol)
-
----
-
-
