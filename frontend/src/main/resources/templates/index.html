@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MCP Front — Prompt to Client</title>
+    <style>
+        :root { color-scheme: light dark; }
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; margin: 0; padding: 2rem; line-height: 1.5; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 1.6rem; }
+        form { margin: 1rem 0; }
+        textarea { width: 100%; min-height: 150px; padding: .75rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
+        .row { display: flex; gap: .75rem; align-items: center; }
+        .row > * { flex: 1; }
+        button { padding: .6rem 1rem; font-weight: 600; cursor: pointer; }
+        .result { margin-top: 1.5rem; padding: 1rem; border: 1px solid #8884; border-radius: .5rem; background: #00000008; }
+        .error { color: #b00020; font-weight: 600; margin-top: .5rem; }
+        footer { margin-top: 2rem; opacity: .7; font-size: .9rem; }
+        /* Markdown base */
+        .markdown h1,.markdown h2,.markdown h3 { margin-top: 1.2em; }
+        .markdown pre { background: #00000010; padding: .75rem; border-radius: .35rem; overflow: auto; }
+        .markdown code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+        .markdown ul { padding-left: 1.25rem; }
+        .small { font-size: .9rem; opacity: .85; }
+        label { font-weight: 600; }
+        input[type="text"] { width: 100%; padding: .6rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>MCP Front — Send a Prompt to the Client and Display the Response</h1>
+    <p class="small">The backend client is expected at <code>http://localhost:8080/ai/ask</code> (modifiable via <code>mcp.client.base-url</code>).</p>
+
+    <form method="post" action="/prompt">
+        <label for="prompt">Your prompt</label>
+        <textarea id="prompt" name="prompt" placeholder="E.g.: Find Pokémon cards with the name Pikachu and summarize the results." th:text="${prompt}"></textarea>
+        <div class="row">
+            <span></span>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+
+    <div th:if="${resultHtml}" class="result markdown">
+        <h3>Response</h3>
+        <div th:utext="${resultHtml}"></div>
+    </div>
+
+    <footer>
+        <p>Tip: You can explicitly suggest using the tool, e.g.: “Use the <code>search_pokemon</code> tool with the name 'Eevee' and summarize the results in 5 points.”</p>
+    </footer>
+</div>
+</body>
+</html>
